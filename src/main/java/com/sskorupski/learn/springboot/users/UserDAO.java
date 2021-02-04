@@ -5,9 +5,15 @@ import java.util.List;
 public interface UserDAO {
 
     List<User> getAll();
-    User getById(Long id);
-    List<User> delete(User user);
-    List<User> update(User user);
-    List<User> create(User user);
 
-};
+    User getById(Long id);
+
+    User getByEmail(String email);
+
+    boolean delete(User user);
+
+    boolean update(User user);
+
+    Long create(User user);
+
+}

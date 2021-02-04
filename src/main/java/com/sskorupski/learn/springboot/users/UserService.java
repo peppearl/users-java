@@ -2,7 +2,6 @@ package com.sskorupski.learn.springboot.users;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -15,17 +14,23 @@ public class UserService {
     public List<User> getAll() {
         return userDAO.getAll();
     }
-    public User getById(Long id){
-        return  userDAO.getById(id);
+
+    public User create(User user) {
+        Long userId = userDAO.create(user);
+        user.setId(userId);
+        return user;
     }
-    boolean delete(User user){
-        return  userDAO.delete(user);
+
+    public User getById(Long id) {
+        return userDAO.getById(id);
     }
-    boolean update(User user){
-        return  userDAO.update(user);
+
+    public boolean update(User user) {
+        return userDAO.update(user);
     }
-    Long create(User user) {
-        return  userDAO.create(user);
+
+    public boolean delete(User user) {
+        return userDAO.delete(user);
     }
 
 }

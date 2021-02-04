@@ -1,6 +1,7 @@
 package com.sskorupski.learn.springboot.users;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,31 +14,35 @@ public class UsersController {
 
     private final UserService userService;
 
-    //GET localhost/users/
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public List<User> getAll() {
         return userService.getAll();
     }
 
-    //GET localhost/users/{id}
+    @PostMapping(value = "/")
+    public ResponseEntity<User> create(@RequestBody User user) {
+        return ResponseEntity.ok(userService.create(user));
+    }
+
     @GetMapping(value = "/{id}")
-    public List<User> getById(@PathVariable Long id) {
-        return userService.getAll();
+    public ResponseEntity<User> getById(@PathVariable Long id) {
+        User user = userService.getById(id);
+        if (user != null) return ResponseEntity.ok(user);
+        else return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public List<User> delete(@PathVariable Long id) {
-        return userService.getAll();
+    @PutMapping
+    public ResponseEntity<Void> update(@RequestBody User user) {
+        if (userService.update(user)) return ResponseEntity.noContent().build();
+        else return ResponseEntity.notFound().build();
     }
 
-    @GetMapping(value = "/update/{id}")
-    public List<User> update(@PathVariable Long id) {
-        return userService.getAll();
-    }
-
-    @GetMapping(value = "/create")
-    public List<User> create(User user) {
-        return userService.getAll();
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        User user = new User();
+        user.setId(id);
+        if (userService.delete(user)) return ResponseEntity.noContent().build();
+        else return ResponseEntity.notFound().build();
     }
 
 }
