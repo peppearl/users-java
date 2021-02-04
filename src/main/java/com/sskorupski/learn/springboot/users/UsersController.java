@@ -1,9 +1,7 @@
 package com.sskorupski.learn.springboot.users;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,29 +13,31 @@ public class UsersController {
 
     private final UserService userService;
 
+    //GET localhost/users/
     @GetMapping(value = "/")
     public List<User> getAll() {
         return userService.getAll();
     }
 
-    @GetMapping(value = "/:id")
-    public User getById(Long id) {
-        return userService.getById();
+    //GET localhost/users/{id}
+    @GetMapping(value = "/{id}")
+    public List<User> getById(@PathVariable Long id) {
+        return userService.getAll();
     }
 
-    @GetMapping(value = "/delete/:id")
-    boolean delete(User user) {
-        return userService.delete();
+    @DeleteMapping(value = "/delete/{id}")
+    public List<User> delete(@PathVariable Long id) {
+        return userService.getAll();
     }
 
-    @GetMapping(value = "/update/:id")
-    boolean update(User user) {
-        return userService.update();
+    @GetMapping(value = "/update/{id}")
+    public List<User> update(@PathVariable Long id) {
+        return userService.getAll();
     }
 
     @GetMapping(value = "/create")
-    Long create(User user) {
-        return userService.create();
+    public List<User> create(User user) {
+        return userService.getAll();
     }
 
 }

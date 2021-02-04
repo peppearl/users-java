@@ -6,8 +6,8 @@ public interface UserDAO {
 
     List<User> getAll();
     User getById(Long id);
-    boolean delete(User user);
-    boolean update(User user);
-    Long create(User user);
+    List<User> delete(User user);
+    List<User> update(User user);
+    List<User> create(User user);
 
 };

@@ -2,6 +2,7 @@ package com.sskorupski.learn.springboot.users;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -15,16 +16,16 @@ public class UserService {
         return userDAO.getAll();
     }
     public User getById(Long id){
-        return  userDAO.getById();
+        return  userDAO.getById(id);
     }
     boolean delete(User user){
-        return  userDAO.delete();
+        return  userDAO.delete(user);
     }
     boolean update(User user){
-        return  userDAO.update();
+        return  userDAO.update(user);
     }
     Long create(User user) {
-        return  userDAO.create();
+        return  userDAO.create(user);
     }
 
 }
