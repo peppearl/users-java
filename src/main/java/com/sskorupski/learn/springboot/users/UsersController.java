@@ -20,4 +20,24 @@ public class UsersController {
         return userService.getAll();
     }
 
+    @GetMapping(value = "/:id")
+    public User getById(Long id) {
+        return userService.getById();
+    }
+
+    @GetMapping(value = "/delete/:id")
+    boolean delete(User user) {
+        return userService.delete();
+    }
+
+    @GetMapping(value = "/update/:id")
+    boolean update(User user) {
+        return userService.update();
+    }
+
+    @GetMapping(value = "/create")
+    Long create(User user) {
+        return userService.create();
+    }
+
 }

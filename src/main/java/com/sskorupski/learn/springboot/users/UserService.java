@@ -14,5 +14,17 @@ public class UserService {
     public List<User> getAll() {
         return userDAO.getAll();
     }
+    public User getById(Long id){
+        return  userDAO.getById();
+    }
+    boolean delete(User user){
+        return  userDAO.delete();
+    }
+    boolean update(User user){
+        return  userDAO.update();
+    }
+    Long create(User user) {
+        return  userDAO.create();
+    }
 
 }

@@ -32,6 +32,6 @@ public class RootControllerIT {
                         "http://localhost:" + port + "/",
                         String.class
                 )
-        ).contains("Hello Spring JDBC");
+        ).contains("Hello Spring JDBC, this is the homepage");
     }
 }
